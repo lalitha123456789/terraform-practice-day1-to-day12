@@ -8,6 +8,7 @@ resource "aws_vpc" "dev" {
 }
 # create subnet
 resource "aws_subnet" "dev" {
+availability_zone = "ap-south-1a"
     vpc_id = aws_vpc.dev.id
     cidr_block = "10.0.0.0/24"
   
@@ -84,6 +85,7 @@ egress {
     ami = var.ami_id
     instance_type = var.instance_type
     subnet_id = aws_subnet.dev.id
+    availability_zone = "ap-south-1a"
     key_name = var.keyname
     vpc_security_group_ids = [aws_security_group.dev.id]
     tags = {
